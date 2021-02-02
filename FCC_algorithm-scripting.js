@@ -11,16 +11,23 @@ convertToF(30);
 // Lesson 2
 
 function reverseString(str) {
-  //convert given string into an array of the individual characters
-  let arrStr = [];
-  arrStr.push(...str);
-
-  //loop through array and reverse the order of the characters
   let revStr = "";
   for (let i=str.length-1; i>=0; i--) {
-    revStr += arrStr[i];
+    revStr += str[i];
   }
   return revStr;
 }
 
 reverseString("hello");
+
+// Lesson 3
+
+function factorialize(num) {
+  if(num > 1) {
+    return num * factorialize(num - 1);
+  } else {
+    return 1;
+  }
+}
+
+factorialize(5);
