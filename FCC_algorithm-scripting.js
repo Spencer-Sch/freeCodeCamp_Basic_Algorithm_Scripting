@@ -1,5 +1,6 @@
 // freeCodeCamp Basic Algorithm Scripting
 // Lesson 1
+// Convert Celsius to Fahrenheit
 
 function convertToF(celsius) {
   let fahrenheit = celsius * 9/5 + 32;
@@ -9,6 +10,7 @@ function convertToF(celsius) {
 convertToF(30);
 
 // Lesson 2
+// Reverse a String
 
 function reverseString(str) {
   let revStr = "";
@@ -21,6 +23,7 @@ function reverseString(str) {
 reverseString("hello");
 
 // Lesson 3
+// Factorialize a Number
 
 function factorialize(num) {
   if(num > 1) {
@@ -34,6 +37,7 @@ factorialize(5);
 
 // Last Commit
 // Lesson 4
+// Find the Longest Word in a String
 
 function findLongestWordLength(str) {
   let strArr = str.split(" ");
@@ -73,6 +77,7 @@ function findLongestWordLength(str) {
 findLongestWordLength("The quick brown fox jumped over the lazy dog");
 
 // Lesson 5
+// Return Largest Number in Arrays
 
 function largestOfFour(arr) {
   let largestArr = [];
@@ -108,6 +113,7 @@ largestOfFour([[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -1
 
 // Last Commit
 // Lesson 6
+// Confirm the Ending
 
 // My initial answer
 function confirmEnding(str, target) {
@@ -139,6 +145,7 @@ function confirmEnding(str, target) {
 confirmEnding("Bastian", "n");
 
 // Lesson 7
+// Repeat a String x times
 
 // My answer
 function repeatStringNumTimes(str, num) {
@@ -159,6 +166,7 @@ function repeatStringNumTimes(str, num) {
 repeatStringNumTimes("abc", 3);
 
 // Lesson 8
+// Truncate a String
 
 // My initial answer
 function truncateString(str, num) {
@@ -180,6 +188,7 @@ function truncateString(str, num) {
 truncateString("A-tisket a-tasket A green and yellow basket", 8);
 
 // Lesson 9
+// Return First Element of and Array that Returns "true"
 
 function findElement(arr, func) {
   for (let x of arr) {
@@ -192,6 +201,7 @@ function findElement(arr, func) {
 findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; });
 
 // Lesson 10
+// Check if a Value is a Boolean primitive
 
 // First answer
 function booWho(bool) {
@@ -221,11 +231,12 @@ function booWho(bool) {
 booWho(null);
 
 // Lesson 11
+// Return Provided String with the First Letter of Each Word Capitalized and all Others Letters Lower Case
 // My first answer.  Needs work.  Will edit.
+
 function titleCase(str) {
   let finalStr = "";
   let strArr = str.split(" ");
-  console.log(strArr);
   for (let i=0; i<strArr.length; i++) {
     if (i>0) {
       finalStr += " ";
@@ -245,3 +256,91 @@ function titleCase(str) {
 }
 
 titleCase("I'm a little tea pot");
+
+// Second Answer After Some Study
+
+function titleCase(str) {
+  let finalArr =[];
+  let strArr = str.toLowerCase().split(" ");
+  for (let i=0; i<strArr.length; i++) {
+    let capsWord = strArr[i].replace(strArr[i][0], function (x) {
+      return x.toUpperCase();
+    });
+    finalArr.push(capsWord);
+  }
+  return finalArr.join(" ");
+}
+
+titleCase("I'm a little tea pot");
+
+// Example code that I really like
+
+function titleCase(str) {
+  return str.toLowerCase().replace(/(^|\s)\S/g, L => L.toUpperCase());
+}
+
+// Lesson 12
+// Copy each element from arr1 into arr2 beginning at a given index of Arr 2.
+
+function frankenSplice(arr1, arr2, n) {
+  let finalArr = [];
+  finalArr.push(...arr2);
+  for (let i=0; i<arr1.length; i++, n++) {
+    finalArr.splice(n, 0, ...arr1.slice(i, i+1));
+  }
+  return finalArr;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
+
+// Clean up after studying
+
+function frankenSplice(arr1, arr2, n) {
+  let finalArr = arr2.slice();
+  for (let i=0; i<arr1.length; i++) {
+    finalArr.splice(n, 0, arr1[i]);
+    n++;
+  }
+  return finalArr;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
+
+// Alternate Solution from website that I like
+
+function frankenSplice(arr1, arr2, n) {
+  let localArr = arr2.slice();
+  localArr.splice(n, 0, ...arr1);
+  return localArr;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
+
+// Lesson 13
+// Remove all "falsy" values (false, null, 0, "", undefined, and NaN) from an array
+// Answer using a For loop
+function bouncer(arr) {
+  let finalArr = [];
+  for (let i=0; i<arr.length; i++) {
+    if (arr[i]) {
+      finalArr.push(arr[i]);
+    }
+  }
+  return finalArr;
+}
+
+bouncer([null, NaN, 1, 2, undefined]);
+
+// Answer using suggested ".filter()" method
+
+function bouncer(arr) {
+  function removeFalsy(val) {
+      return (!!val)
+  }
+  return arr.filter(removeFalsy);
+}
+
+
+bouncer([null, NaN, 1, 2, undefined]);
+
+// Last Commit
