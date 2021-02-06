@@ -344,3 +344,60 @@ function bouncer(arr) {
 bouncer([null, NaN, 1, 2, undefined]);
 
 // Last Commit
+// Lesson 14
+// Return the lowest index at which a value should be inserted into an arry once the array has been sorted.
+
+function getIndexToIns(arr, num) {
+  arr.sort(function(a, b){return a-b});
+  
+    for (let i=0; i<arr.length; i++) {
+      if (num <= arr[i]) {
+        return i;
+        }  
+    }
+    return arr.length;
+  }
+
+  // Alternative solution from FCC list of solutions.
+
+  function getIndexToIns(arr, num) {
+  arr.push(num);
+  arr.sort(function(a, b) {
+    return a - b;
+  });
+  return arr.indexOf(num);
+}
+
+// Lesson 15
+// Return "true" if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+
+function mutation(arr) {
+  let str1 = arr[0].toLowerCase();
+  let str2 = arr[1].toLowerCase();
+  let i = 0;
+
+  while (i < str2.length) {
+    if (str1.indexOf(str2[i]) < 0) {
+      return false;
+    }
+    i++;
+  }
+  return true;
+}
+
+mutation(["hello", "hey"]);
+
+// Lesson 16
+// Split an array into groups the length of "size" and return them as a two-dimensional array
+
+function chunkArrayInGroups(arr, size) {
+  let newArr = [];
+  while (arr.length) {
+    newArr.push(arr.splice(0, size));
+  }
+  return newArr;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
+
+// Completed all lessons!  :D
